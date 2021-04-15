@@ -42,3 +42,30 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Todo
+
+- algorithm
+  - sorting
+    - [ ] heap sort ?
+  - searching
+    - [x] dfs & bfs
+  - pathing finding
+    - [ ] dijkstra
+    - [ ] bellman-ford
+    - [ ] floyd
+    - [ ] spfa
+- dataStructure
+  - basic
+    - [x] stack
+    - [x] queue
+    - [ ] linked list
+    - [ ] bst
+    - [x] heap
+    - [ ] trie
+  - advance
+    - [ ] Red-Black tree
+    - [ ] AVL tree
+    - [ ] Splay
+    - [ ] Treap
+    - [ ] Segment tree

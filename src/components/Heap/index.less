@@ -1,0 +1,27 @@
+@import "@/styles/vars.less";
+
+.heap__container {
+  position: relative;
+  width: 100%;
+  color: white;
+
+  .heap__node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+    opacity: 1;
+    text-align: center;
+    background-color: #ddd;
+
+    // border-radius: 50%;
+    // background: #ffffff;
+    // color: #555;
+    // box-shadow: 11px 11px 22px #d9d9d9, -11px -11px 22px #ffffff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
