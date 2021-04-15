@@ -2,8 +2,31 @@ import "./styles/index.less";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Layout, Menu, Avatar, Row, Col } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { useDispatch, useStore, useSelector } from "react-redux";
+import {
+  selectUserName,
+  selectLogin,
+  setName,
+  setLogin,
+} from "@/features/user/userSlice";
+
+import {
+  Layout,
+  Menu,
+  Avatar,
+  Popover,
+  Form,
+  Input,
+  Button,
+  Row,
+  Col,
+} from "antd";
+
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 import lodash from "lodash";
 import {
@@ -74,11 +97,55 @@ function FileTreeMenu(props: { menuProps: any; root: FileTreeNode }) {
   );
 }
 
+// TODO : Menu Item 点不亮
 export default function DefaultLayout(props: { children?: any }) {
-  console.log("layout rerender");
   const [siderCollapsed, toggleSiderCollapse] = useState(false);
 
   const root = parseCtxToTreeNode(ctx);
+
+  const store = useStore();
+  const dispatch = useDispatch();
+  const username = useSelector(selectUserName);
+  const login = useSelector(selectLogin);
+  const [inputUserName, setInputUserName] = useState("");
+  const userPopover = (
+    <Form style={{ width: 200, height: 400 }}>
+      {!login && (
+        <Form.Item
+          name="username"
+          rules={[{ required: true, message: "Please input your username" }]}
+        >
+          <Input
+            value={inputUserName}
+            onChange={(e) => setInputUserName(e.target.value)}
+            prefix={<UserOutlined />}
+            placeholder="username"
+          ></Input>
+        </Form.Item>
+      )}
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%" }}
+          onClick={() => {
+            setPopoverVisible(false);
+            if (!login) {
+              dispatch(setName(inputUserName));
+              dispatch(setLogin(true));
+            } else {
+              dispatch(setName(""));
+              dispatch(setLogin(false));
+            }
+          }}
+        >
+          {login ? "Log out" : "Log In"}
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+
+  const [popoverVisible, setPopoverVisible] = useState(false);
 
   return (
     <Layout style={{ height: "100vh" }} key="layout">
@@ -107,7 +174,29 @@ export default function DefaultLayout(props: { children?: any }) {
               )}
             </Col>
 
-            <Col span={22}>{/* TODO : */}</Col>
+            <Col span={20}>{/* TODO : */}</Col>
+            <Col span={2}>
+              <Row align="middle" justify="end" style={{ height: "100%" }}>
+                <Popover
+                  title={`Hello, ${login ? username : "title genius"}`}
+                  content={userPopover}
+                  placement="bottomLeft"
+                  arrowPointAtCenter
+                  visible={popoverVisible}
+                  onVisibleChange={(visible) => setPopoverVisible(visible)}
+                >
+                  <Avatar
+                    size="large"
+                    style={{
+                      cursor: "pointer",
+                      background: login ? "#1890ff" : undefined,
+                    }}
+                  >
+                    {login ? username.charAt(0) : <UserOutlined />}
+                  </Avatar>
+                </Popover>
+              </Row>
+            </Col>
           </Row>
         </Header>
         <Content
