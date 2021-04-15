@@ -1,13 +1,14 @@
 import React from "react";
 import { Stack } from "@/components/Stack";
+import DefaultLayout from "@/layout/index";
 
 const Page = function () {
   return (
-    <>
+    <DefaultLayout>
       <h1>Stack</h1>
 
       <Stack />
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

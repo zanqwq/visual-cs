@@ -1,3 +1,4 @@
+import DefaultLayout from "@/layout/index";
 import React from "react";
 import styled from "styled-components";
 
@@ -31,7 +32,7 @@ const ListItemDiv = styled.div`
 
 const Page = function () {
   return (
-    <>
+    <DefaultLayout>
       <h1>Link List</h1>
       {/* 
       <ListDiv>
@@ -42,7 +43,7 @@ const Page = function () {
         <ListItemDiv></ListItemDiv>
         <ListItemDiv></ListItemDiv>
       </ListDiv> */}
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

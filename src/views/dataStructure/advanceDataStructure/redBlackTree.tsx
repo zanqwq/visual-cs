@@ -1,12 +1,13 @@
 import React from "react";
+import DefaultLayout from "@/layout/index";
 
 const Page = function () {
   return (
-    <>
+    <DefaultLayout>
       <h1>Red Black Tree</h1>
 
       {/* <Rbt /> */}
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

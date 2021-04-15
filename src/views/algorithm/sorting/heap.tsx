@@ -2,16 +2,17 @@ import React from "react";
 import { Alert } from "antd";
 import { swap } from "@/utils";
 import { initHeap, down } from "@/components/Heap";
+import DefaultLayout from "@/layout/index";
 
 const Page = function () {
   return (
-    <>
+    <DefaultLayout>
       <Alert
         message="Sorry"
         description="This page it still building yet..."
         type="error"
       />
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

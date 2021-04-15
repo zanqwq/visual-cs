@@ -3,6 +3,7 @@ import { Button, Row, Col, Alert, Tag } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import { getRandomArr, flatGenerator, swap } from "@/utils";
 import { BoxContainer, BoxItem } from "@/components/Box";
+import DefaultLayout from "@/layout/index";
 
 const Page = function () {
   const [a, setA] = useState(getRandomArr(30, [10, 30]));
@@ -101,7 +102,7 @@ const Page = function () {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Quick Sort</h1>
       <Row gutter={10} style={{ marginBottom: "10px" }}>
         <Col>
@@ -191,7 +192,7 @@ const Page = function () {
           ))}
         </BoxContainer>
       </Row>
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

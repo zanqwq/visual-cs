@@ -4,6 +4,7 @@ import { HomeOutlined, PushpinOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { createMatrix, flatGenerator } from "@/utils";
 import anime from "animejs";
+import DefaultLayout from "@/layout/index";
 
 const Wrapper = styled.div`
   .is-invisitable {
@@ -213,7 +214,7 @@ const Page = function () {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Dfs</h1>
 
       <Row gutter={10} align="middle" style={{ marginBottom: 50 }}>
@@ -274,7 +275,7 @@ const Page = function () {
           ))}
         </Row>
       ))}
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

@@ -1,10 +1,11 @@
+import DefaultLayout from "@/layout/index";
 import React from "react";
 
 const Page = function () {
   return (
-    <>
+    <DefaultLayout>
       <h1>Binary Search Tree</h1>
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

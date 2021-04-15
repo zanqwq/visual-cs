@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Row, Col } from "antd";
 import { getRandomArr, swap } from "@/utils";
 import { BoxContainer, BoxItem } from "@/components/Box";
+import DefaultLayout from "@/layout/index";
 
 const Page = function () {
   const [a, setA] = useState(getRandomArr(30, [10, 30]));
@@ -76,7 +77,7 @@ const Page = function () {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Bubble Sort</h1>
       <Row gutter={10} style={{ marginBottom: "10px" }}>
         <Col>
@@ -126,7 +127,7 @@ const Page = function () {
           </BoxItem>
         ))}
       </BoxContainer>
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

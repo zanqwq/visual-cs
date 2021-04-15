@@ -32,9 +32,9 @@ const routesAppender: FileTreeNodeConsumer = {
       const page = node[curPath]; // 蜜汁错误, 把 node[curPath] 套进 `` 字符串就会报错说 curPath is not defined, 我傻了
 
       const imported = import(`@/views${page}`);
-      const Layout = React.lazy(() =>
-        imported.then((res: any) => res.default.meta.layout)
-      );
+      // const Layout = React.lazy(() =>
+      //   imported.then((res: any) => res.default.meta.layout)
+      // );
       const Page = React.lazy(() => imported);
 
       let path = node[curPath].replace(".tsx", "");
@@ -43,9 +43,9 @@ const routesAppender: FileTreeNodeConsumer = {
       routes.push(
         <Route exact key={node[curPath]} path={path}>
           <React.Suspense fallback={null}>
-            <Layout key="globalLayout">
-              <Page />
-            </Layout>
+            {/* <Layout key="globalLayout"> */}
+            <Page />
+            {/* </Layout> */}
           </React.Suspense>
         </Route>
       );

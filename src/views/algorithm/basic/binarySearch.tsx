@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Input, Row, Col, Alert, message, Tag } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import { getRandomArr } from "@/utils";
+import DefaultLayout from "@/layout/index";
 
 const ArrayDiv = styled.div`
   display: flex;
@@ -126,7 +127,7 @@ const Page = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Binary Search</h1>
 
       <Row gutter={10}>
@@ -215,7 +216,7 @@ const Page = () => {
       ></Alert>
 
       <ArrayDiv style={{ marginTop: 50 }}>{arrayItemDivs}</ArrayDiv>
-    </>
+    </DefaultLayout>
   );
 };
 Page.meta = {

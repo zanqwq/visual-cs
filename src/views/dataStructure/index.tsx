@@ -1,7 +1,8 @@
+import DefaultLayout from "@/layout/index";
 import React from "react";
 
 const Page = function () {
-  return <div>Index</div>;
+  return <DefaultLayout>Index</DefaultLayout>;
 };
 Page.meta = {
   layout: import("@/layout/index"),
