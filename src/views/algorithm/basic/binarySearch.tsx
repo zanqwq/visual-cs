@@ -94,7 +94,6 @@ const Page = () => {
   ));
 
   const onSearchDone = () => {
-    console.log("binary search done", ctx);
     if (timeId.current) clearInterval(timeId.current);
     setSearching(false);
     setIsStop(false);

@@ -27,7 +27,7 @@ type NodePosition = { left: number; top: number };
  * @param gutterVer gutter vertical
  * @returns NodePosition[]
  */
-function getNodePosition(
+export function getNodePosition(
   size: number,
   d: number,
   gutterHor: number,

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@antv/g6": "^4.2.6",
     "@antv/x6": "^1.18.1",
+    "@antv/x6-react-components": "^1.1.7",
     "@craco/craco": "^6.1.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^4.2.4",

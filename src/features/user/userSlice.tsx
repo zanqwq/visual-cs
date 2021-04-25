@@ -48,7 +48,7 @@ export const userSlice = createSlice({
         notification.success({
           message: `Welcome to Visual CS!`,
           description:
-            "Visual Computer Science is a platform that provides visualization contents in cs region. \n Hope you can enjoy learning something here!",
+            "Visual Computer Science is a platform that provides visual contents in cs region. \n Hope you can enjoy learning something here!",
         });
       state.login = action.payload;
     },

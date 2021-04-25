@@ -78,7 +78,6 @@ function MenuChildren(props: { root: FileTreeNode }) {
 }
 
 function FileTreeMenu(props: { menuProps: any; root: FileTreeNode }) {
-  console.log("file tree menu update");
   const { menuProps, root } = props;
   const history = useHistory();
   return (
@@ -129,13 +128,16 @@ export default function DefaultLayout(props: { children?: any }) {
           htmlType="submit"
           style={{ width: "100%" }}
           onClick={() => {
-            setPopoverVisible(false);
             if (!login) {
-              dispatch(setName(inputUserName));
-              dispatch(setLogin(true));
+              if (inputUserName) {
+                dispatch(setName(inputUserName));
+                dispatch(setLogin(true));
+                setPopoverVisible(false);
+              }
             } else {
               dispatch(setName(""));
               dispatch(setLogin(false));
+              setPopoverVisible(false);
             }
           }}
         >
