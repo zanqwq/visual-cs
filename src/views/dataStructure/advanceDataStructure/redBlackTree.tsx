@@ -33,9 +33,9 @@ class RbtNode {
   }
 }
 
-type RbtNode_LR = RbtNode & { left: RbtNode; right: RbtNode };
-type RbtNode_L = RbtNode & { left: RbtNode };
-type RbtNode_R = RbtNode & { right: RbtNode };
+// type RbtNode_LR = RbtNode & { left: RbtNode; right: RbtNode };
+// type RbtNode_L = RbtNode & { left: RbtNode };
+// type RbtNode_R = RbtNode & { right: RbtNode };
 
 /*
 Q1 : 为什么插入操作能够保证 2-3 树的完美平衡 ?
@@ -298,7 +298,6 @@ export class Rbt {
 }
 
 const convertRbtToData = (rbt: Rbt) => {
-  console.log("convert", rbt.getRoot());
   const data = {
     nodes: [] as any[],
     edges: [] as any[],
@@ -370,10 +369,22 @@ const convertRbtToData = (rbt: Rbt) => {
   return data;
 };
 
+const useRbt = () => {
+  const [rbt] = useState(new Rbt());
+  const [data, setData] = useState(convertRbtToData(rbt));
+
+  return {
+    rbt,
+    data,
+    setData,
+  };
+};
+
 const Page = function () {
   const [putKey, setPutKey] = useState(0 as any);
   const [delKey, setDelKey] = useState(0 as any);
-  const [rbt, setRbt] = useState(new Rbt());
+  const { rbt, data, setData } = useRbt();
+  const graphRef = useRef(null as any);
   const containerRef = useRef(null as any);
 
   useEffect(() => {
@@ -383,27 +394,42 @@ const Page = function () {
     // const width = container.clientWidth;
     // const height = container.clientHeight;
 
-    const graph = new Graph({
-      container: containerRef.current,
-      background: {
-        color: "#fff",
-      },
-      panning: {
-        enabled: true,
-      },
-      mousewheel: {
-        enabled: true,
-        modifiers: ["ctrl", "meta"],
-      },
-    });
+    if (graphRef.current === null) {
+      graphRef.current = new Graph({
+        container: containerRef.current,
+        background: {
+          color: "#fff",
+        },
+        panning: {
+          enabled: true,
+        },
+        mousewheel: {
+          enabled: true,
+          modifiers: ["ctrl", "meta"],
+        },
+      });
+    }
+    // const graph = new Graph({
+    //   container: containerRef.current,
+    //   background: {
+    //     color: "#fff",
+    //   },
+    //   panning: {
+    //     enabled: true,
+    //   },
+    //   mousewheel: {
+    //     enabled: true,
+    //     modifiers: ["ctrl", "meta"],
+    //   },
+    // });
 
-    const data = convertRbtToData(rbt);
-
-    graph.fromJSON(data);
+    graphRef.current.fromJSON(data);
+    // graph.fromJSON(data);
 
     return () => {
       // 销毁画布
-      graph.dispose();
+      // graphRef.current!.dispose();
+      // graph.dispose();
     };
   });
 
@@ -420,13 +446,13 @@ const Page = function () {
             onClick={() => {
               console.log("put");
               rbt.put(putKey, putKey);
-              setPutKey("");
+              setData(convertRbtToData(rbt));
             }}
           >
             Put
           </Button>
         </Col>
-        {/* <Col>
+        <Col>
           <InputNumber
             value={delKey}
             onChange={(val) => setDelKey(Number(val))}
@@ -435,14 +461,12 @@ const Page = function () {
             onClick={() => {
               console.log("delete");
               rbt.del(delKey);
-              console.log(rbt.getRoot());
-
-              setDelKey("");
+              setData(convertRbtToData(rbt));
             }}
           >
             Delete
           </Button>
-        </Col> */}
+        </Col>
       </Row>
 
       {/* <Rbt /> */}
