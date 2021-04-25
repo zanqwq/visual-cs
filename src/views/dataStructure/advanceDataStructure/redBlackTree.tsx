@@ -258,6 +258,7 @@ export class Rbt {
   }
   private rotateL(h: RbtNode) {
     const x = h.right!; // 肯定对 h 做左旋操作时, h 有右儿子
+
     // 旋转
     h.right = x.left;
     x.left = h;
@@ -281,7 +282,7 @@ export class Rbt {
 
     return x;
   }
-  // 对应将一个 4 节点分解, 将 4 节点中间的键提到父节点, 因此要d将 h 变成红节点
+  // 对应将一个 4 节点分解, 将 4 节点中间的键提到父节点, 因此要将 h 变成红节点
   private flipColors(h: RbtNode) {
     h.color = !h.color;
     h.left!.color = !h.left!.color;
@@ -289,8 +290,7 @@ export class Rbt {
   }
   private fix(h: RbtNode) {
     if (this.isRed(h.right)) h = this.rotateL(h);
-    if (this.isRed(h.left) && this.isRed((h.left as RbtNode).left))
-      h = this.rotateR(h);
+    if (this.isRed(h.left) && this.isRed(h.left!.left)) h = this.rotateR(h);
     if (this.isRed(h.left) && this.isRed(h.right)) this.flipColors(h);
     return h;
   }
