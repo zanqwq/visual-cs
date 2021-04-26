@@ -30,10 +30,12 @@
     "styled-components": "^5.2.1",
     "typescript": "^3.8.3"
   },
+  "homepage": "./",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

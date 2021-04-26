@@ -145,6 +145,7 @@ export class Rbt {
 
     return this.fix(h);
   }
+  // 函数作用为 : 让 h.left 或 h.left.left 变成红节点
   private moveRedLeft(h: RbtNode) {
     // 断言 h 为 red, h.left & h.right 为 black
     this.flipColors(h);
@@ -184,7 +185,7 @@ export class Rbt {
 
     return this.fix(h);
   }
-  // 断言 h 是红节点, h.left 和 h.right 都是黑节点
+  // 函数作用为 : 让 h.right 或 h.right.right 变成红节点
   private moveRedRight(h: RbtNode) {
     this.flipColors(h);
     // h.right 不为 null, 所以断言 h.left 不为 null
